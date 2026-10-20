@@ -1,0 +1,351 @@
+/* SIAKADU UI polish: normalisasi form controls tanpa mengganti layout lama. */
+:root {
+    --siakadu-ink: #132342;
+    --siakadu-muted: #64748b;
+    --siakadu-border: #d5deeb;
+    --siakadu-primary: #4f46e5;
+    --siakadu-teal: #14b8a6;
+    --siakadu-field-bg: #fff;
+    --siakadu-field-focus: rgba(79, 70, 229, .14);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* Text inputs, select, and textarea share one visual language. */
+input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]),
+select,
+textarea {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    color: var(--siakadu-ink);
+    background-color: var(--siakadu-field-bg);
+    border: 1px solid var(--siakadu-border);
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.4;
+    box-shadow: none;
+    transition: border-color .15s ease, box-shadow .15s ease, background-color .15s ease;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]),
+select {
+    min-height: 40px;
+    padding: 9px 12px;
+    max-width: 100%;
+}
+
+textarea { min-height: 96px; padding: 10px 12px; resize: vertical; width: 100%; }
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]):not([type="submit"]):not([type="button"]):focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #818cf8;
+    box-shadow: 0 0 0 3px var(--siakadu-field-focus);
+}
+
+input::placeholder, textarea::placeholder { color: #94a3b8; opacity: 1; }
+select { cursor: pointer; }
+select:disabled, input:disabled, textarea:disabled { background: #f1f5f9; color: #64748b; cursor: not-allowed; }
+
+/* CRITICAL: do not let global input styles turn checkboxes into giant fields. */
+input[type="checkbox"],
+input[type="radio"] {
+    -webkit-appearance: auto !important;
+    appearance: auto !important;
+    display: inline-block !important;
+    width: 16px !important;
+    height: 16px !important;
+    min-width: 16px !important;
+    min-height: 16px !important;
+    max-width: 16px !important;
+    max-height: 16px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: initial !important;
+    border-radius: 3px !important;
+    box-shadow: none !important;
+    flex: 0 0 16px !important;
+    vertical-align: middle;
+    accent-color: #0f766e;
+    cursor: pointer;
+}
+
+input[type="hidden"] { display: none !important; }
+
+.checkbox-control,
+.radio-control {
+    display: inline-flex !important;
+    width: fit-content !important;
+    max-width: 100%;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 9px !important;
+    color: #334155;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    line-height: 1.45;
+    cursor: pointer;
+    white-space: normal;
+}
+
+.checkbox-control input[type="checkbox"],
+.radio-control input[type="radio"] { margin: 0 !important; }
+
+.field > label:not(.checkbox-control):not(.radio-control),
+.form-grid .field > label:not(.checkbox-control):not(.radio-control) {
+    display: block;
+    margin: 0 0 7px;
+    color: #334155;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* Preserve compact inline-edit forms inside data tables. */
+.data-table td form input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+.data-table td form select {
+    width: auto;
+    min-width: 72px;
+    min-height: 34px;
+    padding: 6px 9px;
+    border: 1px solid var(--siakadu-border);
+    border-radius: 7px;
+    font-size: 12px;
+    line-height: 1.3;
+}
+
+.data-table td form select { min-width: 118px; }
+.data-table td form input[type="checkbox"] { width: 16px !important; min-width: 16px !important; }
+.data-table td form label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Form layouts must not center standalone checkboxes as giant blocks. */
+.form-grid .field-full > .checkbox-control,
+.form-grid .field-full > label.checkbox-control {
+    display: inline-flex !important;
+    width: auto !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+}
+
+.filter-bar select, .portal-filter select { min-width: 0; }
+.filter-bar input:not([type="checkbox"]), .portal-filter input:not([type="checkbox"]) { min-width: 0; }
+
+/* Login: coherent with navy/teal SIAKADU admin/student shell. */
+.login-page {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(420px, 1fr);
+    background: #f8fafc;
+    color: var(--siakadu-ink);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.login-brand-panel {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(36px, 7vw, 104px);
+    color: #f8fafc;
+    background: linear-gradient(145deg, #07132e 0%, #0f2149 72%, #132653 100%);
+}
+.login-brand-kicker {
+    color: #8fe9de;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    margin-bottom: 22px;
+}
+.login-brand-title {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(38px, 4.2vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -.045em;
+    font-weight: 800;
+}
+.login-brand-description {
+    margin: 22px 0 0;
+    max-width: 560px;
+    color: #c5d3ec;
+    font-size: 16px;
+    line-height: 1.8;
+}
+.login-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0,1fr));
+    gap: 12px;
+    margin-top: 38px;
+    max-width: 620px;
+}
+.login-feature {
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(203, 213, 225, .16);
+    background: rgba(255,255,255,.06);
+}
+.login-feature strong { display: block; font-size: 14px; color: #fff; }
+.login-feature span { display: block; margin-top: 5px; font-size: 12px; color: #b8c9e5; }
+.login-form-panel {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: clamp(28px, 6vw, 84px);
+}
+.login-card { width: 100%; max-width: 490px; }
+.login-eyebrow {
+    color: #4f46e5;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    font-size: 11px;
+    font-weight: 800;
+}
+.login-heading {
+    margin: 16px 0 8px;
+    color: #0f1f3d;
+    font-size: clamp(27px, 3vw, 34px);
+    line-height: 1.2;
+    letter-spacing: -.035em;
+}
+.login-subheading { margin: 0 0 26px; color: #64748b; font-size: 14px; line-height: 1.7; }
+.login-form { display: grid; gap: 17px; }
+.login-form .field label { margin-bottom: 7px; }
+.login-form input:not([type="checkbox"]):not([type="hidden"]) { width: 100%; min-height: 48px; font-size: 14px; }
+.login-submit {
+    min-height: 48px;
+    width: 100%;
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    background: #0f766e;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(15,118,110,.16);
+}
+.login-submit:hover { background: #115e59; }
+.login-footnote { margin: 22px 0 0; color: #94a3b8; font-size: 11px; line-height: 1.65; }
+.login-alert { padding: 12px 14px; margin-bottom: 18px; border-radius: 9px; font-size: 12px; line-height: 1.5; }
+.login-alert-success { color: #065f46; background: #ecfdf5; border: 1px solid #a7f3d0; }
+.login-alert-error { color: #991b1b; background: #fef2f2; border: 1px solid #fecaca; }
+.login-alert ul { margin: 5px 0 0; padding-left: 18px; }
+
+@media (max-width: 900px) {
+    .login-page { grid-template-columns: 1fr; }
+    .login-brand-panel { min-height: auto; padding: 36px 26px; }
+    .login-brand-title { font-size: 38px; }
+    .login-brand-description { margin-top: 13px; font-size: 14px; }
+    .login-feature-grid { margin-top: 22px; }
+    .login-form-panel { min-height: auto; padding: 38px 24px 50px; }
+}
+@media (max-width: 480px) {
+    .login-feature-grid { grid-template-columns: 1fr; }
+    .login-feature { padding: 12px; }
+}
+
+@media print {
+    .login-brand-panel, .login-form-panel { display: none !important; }
+}
+
+/* Perbaikan final: judul Pengaturan Akun tanpa ikon bertumpuk */
+
+.account-page-head {
+    display: block !important;
+    width: 100%;
+    min-width: 0;
+    overflow: visible;
+}
+
+.account-page-head::before,
+.account-page-head::after,
+.account-page-heading::before,
+.account-page-heading::after {
+    content: none !important;
+    display: none !important;
+}
+
+.account-page-heading {
+    display: block !important;
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.account-page-heading .account-page-icon,
+.account-page-heading svg,
+.account-page-heading i,
+.account-page-heading [data-icon] {
+    display: none !important;
+}
+
+.account-page-heading .eyebrow {
+    margin-bottom: 8px;
+}
+
+.account-page-heading h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 26px;
+    line-height: 1.35;
+    font-weight: 800;
+}
+
+.account-page-heading p {
+    margin: 8px 0 0;
+    line-height: 1.6;
+    max-width: 680px;
+}
+
+@media (max-width: 600px) {
+    .account-page-heading h1 {
+        font-size: 22px;
+    }
+}
+
+/* =========================================
+   SPACING SIDEBAR — ADMIN & MAHASISWA
+   ========================================= */
+
+.sidebar-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Hindari margin ganda dari aturan CSS sebelumnya */
+.sidebar-bottom > .user-mini,
+.sidebar-bottom > .sidebar-account-link,
+.sidebar-bottom > .logout-form {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* Jaga tombol Keluar tetap memenuhi lebar sidebar */
+.sidebar-bottom > .logout-form,
+.sidebar-bottom .logout-button {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Jarak dan ukuran menu Pengaturan Akun */
+.sidebar-bottom > .sidebar-account-link {
+    min-height: 46px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+/* Jarak antarelemen profil, pengaturan, dan keluar */
+.sidebar-bottom > .user-mini {
+    padding-top: 4px;
+    padding-bottom: 4px;
+}

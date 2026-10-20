@@ -1,0 +1,47 @@
+/* Student portal and account settings additions; shares base SIAKADU admin tokens. */
+.sidebar-account-link{display:flex;align-items:center;gap:10px;padding:10px 11px;margin:0 0 12px;border:1px solid rgba(255,255,255,.16);border-radius:8px;color:#dce7ff;background:rgba(255,255,255,.07);font-size:12px;font-weight:700}
+.sidebar-account-link:hover,.sidebar-account-link.active{background:rgba(45,212,191,.16);border-color:rgba(45,212,191,.45);color:#fff}
+.sidebar-account-link span:first-child{font-size:16px;color:#8fe9de}
+.student-sidebar .sidebar-bottom{padding-bottom:15px}
+.student-hero{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;padding:24px;background:linear-gradient(125deg,#fff 0%,#f3f7ff 100%);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);margin-bottom:20px}
+.student-hero h1{font-size:26px;line-height:1.25;margin:0 0 8px;letter-spacing:-.03em;color:#102044}
+.student-hero p{margin:0;color:var(--muted);max-width:650px}
+.student-id-pill{display:inline-flex;align-items:center;gap:8px;background:#e7fbf7;color:#0f766e;border:1px solid #b5eee3;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:800;margin-top:14px}
+.student-stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:20px}
+.student-content-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr);gap:18px}
+.student-info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 22px}
+.student-info-item{padding:13px 0;border-bottom:1px solid #edf1f6;min-width:0}
+.student-info-label{font-size:10px;text-transform:uppercase;letter-spacing:.055em;color:var(--muted);font-weight:800}
+.student-info-value{font-size:13px;font-weight:650;margin-top:5px;overflow-wrap:anywhere}
+.inline-status{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:800;background:#f1f5f9;color:#475569}
+.inline-status::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.portal-filter{display:flex;gap:10px;align-items:end;flex-wrap:wrap;padding:16px;border:1px solid var(--line);border-radius:12px;background:#fff;margin-bottom:18px;box-shadow:var(--shadow)}
+.portal-filter .field-grow{flex:1 1 240px}
+.portal-filter .field-small{flex:0 1 190px}
+.course-list{display:grid;gap:12px}
+.course-option{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:15px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.course-option:hover{border-color:#a5b4fc;background:#fcfcff}
+.course-option-main{min-width:0;flex:1}
+.course-option-title{font-size:13px;font-weight:800;color:#172554}
+.course-meta{display:flex;flex-wrap:wrap;gap:8px 14px;color:var(--muted);font-size:11px;margin-top:6px}
+.course-option-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.course-picker-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:18px;align-items:start}
+.status-banner{border:1px solid #cbd5e1;border-radius:10px;padding:13px 15px;background:#f8fafc;margin-bottom:16px;color:#334155;font-size:12px}
+.status-banner.success{background:#ecfdf5;border-color:#a7f3d0;color:#065f46}
+.status-banner.warning{background:#fffbeb;border-color:#fde68a;color:#92400e}
+.status-banner.error{background:#fef2f2;border-color:#fecaca;color:#991b1b}
+.student-account-card{max-width:900px}
+.account-section-title{font-size:14px;font-weight:800;margin:0 0 4px}
+.account-section-caption{font-size:12px;color:var(--muted);margin:0 0 16px}
+.account-section-divider{border:0;border-top:1px solid var(--line);margin:22px 0}
+.schedule-list{display:grid;gap:10px}
+.schedule-row{display:grid;grid-template-columns:96px minmax(0,1fr);gap:13px;padding:14px;border:1px solid var(--line);border-radius:10px;background:white}
+.schedule-time{font-size:12px;font-weight:800;color:#3730a3}
+.schedule-course{font-weight:800;color:#172554;font-size:13px}
+.schedule-details{display:flex;gap:8px 14px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-top:5px}
+.profile-header{display:flex;align-items:center;gap:15px;padding:20px;border-bottom:1px solid var(--line)}
+.profile-avatar{width:58px;height:58px;display:grid;place-items:center;flex:0 0 58px;border-radius:16px;color:#fff;background:#0f766e;font-size:23px;font-weight:800}
+.small-hint{font-size:11px;color:var(--muted);margin-top:6px}
+@media(max-width:1180px){.student-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.course-picker-grid,.student-content-grid{grid-template-columns:1fr}}
+@media(max-width:760px){.student-hero{flex-direction:column;padding:18px}.student-hero h1{font-size:22px}.student-stat-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.student-info-grid{grid-template-columns:1fr}.course-option{align-items:flex-start;flex-direction:column}.course-option-actions{width:100%}.schedule-row{grid-template-columns:1fr;gap:6px}.portal-filter{padding:12px}.portal-filter .field-small{flex:1 1 140px}}
+@media print{.sidebar,.topbar,.footer-note,.no-print,.mobile-overlay{display:none!important}.main-area{margin:0!important}.content{padding:0!important}.app-shell{display:block!important}.card,.stat-card{box-shadow:none!important}}

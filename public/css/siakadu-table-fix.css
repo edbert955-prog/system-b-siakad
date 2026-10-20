@@ -1,0 +1,245 @@
+/* SIAKADU table scrolling and pagination repair.
+   Loaded after siakadu-admin.css and siakadu-portal.css. */
+html,
+body {
+    max-width: 100%;
+    overflow-x: clip;
+}
+
+.main-area,
+.content,
+.card,
+.panel,
+.table-scroll-shell {
+    min-width: 0;
+}
+
+.table-scroll-shell {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    position: relative;
+}
+
+.table-scroll-controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    min-height: 38px;
+    padding: 6px 12px;
+    border-bottom: 1px solid var(--line, #e2e8f0);
+    background: #f8fafc;
+}
+
+.table-scroll-controls[hidden] {
+    display: none !important;
+}
+
+.table-scroll-label {
+    margin-right: auto;
+    color: var(--muted, #64748b);
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.table-scroll-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 28px;
+    padding: 0;
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+    background: #fff;
+    color: #334155;
+    font-size: 19px;
+    line-height: 1;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.table-scroll-button:hover:not(:disabled) {
+    background: #eef2ff;
+    border-color: #818cf8;
+    color: #3730a3;
+}
+
+.table-scroll-button:disabled {
+    opacity: .38;
+    cursor: not-allowed;
+}
+
+.table-wrap {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #94a3b8 #f1f5f9;
+}
+
+/* Use the table's intrinsic width when columns need more room. This keeps
+   the page itself from growing horizontally; only the table area scrolls. */
+.table-wrap > table,
+.table-wrap > .data-table {
+    width: max-content;
+    min-width: 100%;
+    max-width: none;
+}
+
+.table-wrap th,
+.table-wrap td {
+    white-space: nowrap;
+}
+
+.table-wrap::-webkit-scrollbar {
+    height: 9px;
+}
+
+.table-wrap::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 8px;
+}
+
+.table-wrap::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border: 2px solid #f1f5f9;
+    border-radius: 8px;
+}
+
+/* The default Laravel Tailwind paginator relies on Tailwind utility classes.
+   If Tailwind is absent, SVG arrows can grow to hundreds of pixels. */
+.pagination {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.pagination nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    flex: 0 1 auto;
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+}
+
+.pagination nav svg,
+.pagination svg {
+    display: inline-block !important;
+    width: 16px !important;
+    height: 16px !important;
+    min-width: 16px !important;
+    max-width: 16px !important;
+    vertical-align: middle;
+}
+
+.siakadu-pagination {
+    display: flex;
+    justify-content: flex-end;
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: 100%;
+}
+
+.siakadu-page-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    min-width: 0;
+}
+
+.pagination nav .page-link,
+.siakadu-page-actions .page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    min-width: 32px;
+    min-height: 31px;
+    padding: 5px 9px;
+    border: 1px solid var(--line, #e2e8f0);
+    border-radius: 7px;
+    background: #fff;
+    color: #475569;
+    font-size: 11px;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.pagination nav a.page-link:hover,
+.siakadu-page-actions a.page-link:hover {
+    border-color: #a5b4fc;
+    background: #eef2ff;
+    color: #3730a3;
+}
+
+.pagination nav .page-link.active,
+.siakadu-page-actions .page-link.active {
+    border-color: var(--accent, #4f46e5);
+    background: var(--accent, #4f46e5);
+    color: #fff;
+    font-weight: 800;
+}
+
+.pagination nav .page-link.disabled,
+.siakadu-page-actions .page-link.disabled {
+    color: #94a3b8;
+    background: #f8fafc;
+    cursor: not-allowed;
+}
+
+.pagination nav > div {
+    min-width: 0;
+    max-width: 100%;
+}
+
+@media (max-width: 760px) {
+    .table-scroll-controls {
+        padding: 6px 8px;
+    }
+
+    .pagination {
+        justify-content: center;
+    }
+
+    .pagination > span {
+        flex: 1 0 100%;
+        text-align: center;
+    }
+
+    .pagination nav,
+    .siakadu-pagination {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .siakadu-page-actions {
+        justify-content: center;
+    }
+}
+
+@media print {
+    .table-scroll-controls {
+        display: none !important;
+    }
+
+    .table-wrap {
+        overflow: visible !important;
+    }
+
+    .table-wrap > table,
+    .table-wrap > .data-table {
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+}
